@@ -1,0 +1,3 @@
+#define DHTPIN D2
+#define DHTTYPE DHT22 // DHT 22 (AM2302), AM2321
+#define CO2PIN A0
