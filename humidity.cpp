@@ -6,7 +6,7 @@ std::vector<float> dhtValues(DHT dht){
   float t = dht.readTemperature();
   if (isnan(h) || isnan(t)) {
     Serial.println("Failed to read from DHT sensor!");
-    return{-1.0, -1.0, -1.0};
+    return{-1.0, -1.0};
   }
   float hic = dht.computeHeatIndex(t, h, false);
   Serial.print ("Humidity: ");
@@ -15,9 +15,6 @@ std::vector<float> dhtValues(DHT dht){
   Serial.print ("Temperature: ");
   Serial.print (t);
   Serial.print (" *C ");
-  Serial.print ("Heat index: ");
-  Serial.print (hic);
-  Serial.print (" *C ");
 
-  return {h, t, hic};
+  return {h, t};
 }
