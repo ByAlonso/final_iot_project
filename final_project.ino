@@ -33,13 +33,13 @@ void setup() {
 
   //print out the HWEUI so that we can register it via ttnctl
   Serial.println("When using OTAA, register this DevEUI: ");
-  deviceId = myLora.hweui()
+  deviceId = myLora.hweui();
   Serial.println("appeui: " + myLora.appeui());
   Serial.println("deveui: " + myLora.deveui());
 }
 
 void loop() {
-  std::vector<float> dhtValue = dhtValues(dht);
+  /*std::vector<float> dhtValue = dhtValues(dht);
 
   std::string humidity = std::to_string(dhtValue.get(0)).c_str();
   std::string temperature = std::to_string(dhtValue.get(1)).c_str();
@@ -47,5 +47,5 @@ void loop() {
   std::string windowStatus = getWindowStatus(); // We have to check when we receive the signal of changing led and call setWindowStatus
   //timestamp should be retrieved in server each time a message is receiver
 
-  delay(10000);
+  delay(10000);*/
 }
