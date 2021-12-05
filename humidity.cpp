@@ -9,12 +9,12 @@ std::vector<float> dhtValues(DHT dht){
     return{-1.0, -1.0};
   }
   float hic = dht.computeHeatIndex(t, h, false);
-  Serial.print ("Humidity: ");
+  /*Serial.print ("Humidity: ");
   Serial.print (h);
   Serial.print (" % ");
   Serial.print ("Temperature: ");
   Serial.print (t);
-  Serial.print (" *C ");
+  Serial.print (" *C ");*/
 
   return {h, t};
 }

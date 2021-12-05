@@ -1,2 +1,2 @@
 #include "globals.hpp"
-std::string windowStatus = "0";
+String windowStatus = "0";
