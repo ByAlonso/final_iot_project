@@ -35,6 +35,7 @@ String hexToAscii( String hex )
   uint16_t len = hex.length();
   String ascii = "";
 
+
   for ( uint16_t i = 0; i < len; i += 2 )
     ascii += (char)strtol( hex.substring( i, i + 2 ).c_str(), NULL, 16 );
 
@@ -65,6 +66,9 @@ float v40000 = 3.93;
 SoftwareSerial mySerial(TX, RX);
 rn2xx3 myLora(mySerial);
 String deviceId = "";
+String humidity = "";
+String temperature = "";
+String CO2Value = "";
 String str = "";
 void setup() {
   Serial.begin(57600);
@@ -90,20 +94,22 @@ void setup() {
   deviceId = String( myLora.hweui() );
 }
 
+String finalData = "";
+
 void loop() {
   std::vector<float> dhtValue = dhtValues(dht);
 
-  String humidity = String(dhtValue[0]);
-  String temperature = String(dhtValue[1]);
-  String CO2Value = String(getCO2Value(co2Sensor));
-  String windowStatus = getWindowStatus(); // We have to check when we receive the signal of changing led and call setWindowStatus
+  humidity = String(dhtValue[0]);
+  temperature = String(dhtValue[1]);
+  CO2Value = String(getCO2Value(co2Sensor));
+  windowStatus = getWindowStatus(); // We have to check when we receive the signal of changing led and call setWindowStatus
   //timestamp should be retrieved in server each time a message is receiver
   Serial.println(deviceId);
   Serial.println(humidity);
   Serial.println(temperature);
   Serial.println(CO2Value);
   Serial.println(windowStatus);
-  String finalData = Asciitohex(deviceId  + "," + humidity + "," + temperature + "," + CO2Value + "," + windowStatus);
+  finalData = Asciitohex(deviceId  + "," + humidity + "," + temperature + "," + CO2Value + "," + windowStatus);
   
   mySerial.println("radio tx " + finalData);
   str = mySerial.readStringUntil('\n');
