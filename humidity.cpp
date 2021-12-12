@@ -1,5 +1,6 @@
 #include "humidity.hpp"
 
+//Measures humidity and temperature
 std::vector<float> dhtValues(DHT dht){
   delay(2000);
   float h = dht.readHumidity();

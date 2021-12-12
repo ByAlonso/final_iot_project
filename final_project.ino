@@ -2,8 +2,8 @@
 #include "globals.hpp"
 #include "CO2.hpp"
 #include "communications.hpp"
-#include <ESP8266WiFi.h>
 
+//Converts string into hexadecimal values to send through LoRa communication
 String Asciitohex( String data ) {
 
   // Length (with one extra character for the null terminator)
@@ -30,25 +30,18 @@ String Asciitohex( String data ) {
   return String(buffer);
 }
 
-String hexToAscii( String hex )
-{
-  uint16_t len = hex.length();
-  String ascii = "";
-
-
-  for ( uint16_t i = 0; i < len; i += 2 )
-    ascii += (char)strtol( hex.substring( i, i + 2 ).c_str(), NULL, 16 );
-
-  return ascii;
-}
-
+//Sets window pin
 void setupWindow() {
   pinMode(WINDOWPIN, OUTPUT);
   digitalWrite(WINDOWPIN, LOW);
 }
+
+//Get window status
 String getWindowStatus() {
   return windowStatus;
 }
+
+//Modifies window status and turns off/on the LED attached
 void setWindowStatus() {
   if (windowStatus == "0") {
     digitalWrite(WINDOWPIN, HIGH);
